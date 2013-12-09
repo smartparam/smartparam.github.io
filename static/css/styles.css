@@ -1,0 +1,40 @@
+
+header.hero > div {
+    margin-top: 100px;
+    margin-bottom: 20px;
+    height: 290px;
+    background-repeat: no-repeat;
+    background-image: url(../img/smartparam.png);
+    background-position: 50% 0%;
+}
+
+header.small > div {
+    margin-top: 60px;
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    padding-left: 2em;
+    margin-top: 3em;
+    line-height: 60px;
+    font-weight: bold;
+}
+
+header > hr {
+    margin-top: 0px;
+}
+
+div.well {
+    padding: 8px 0px;
+}
+
+footer {
+    padding: 70px 0px;
+    margin-top: 70px;
+    margin-bottom: 20px;
+    border-top: 1px solid #eee;
+    text-align: right;
+}
