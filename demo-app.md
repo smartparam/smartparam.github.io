@@ -5,7 +5,7 @@ title: SmartParam
 
 # SmartParam demonstration
 
-Along with SmartParam we published [demo application](https://bitbucket.org/smartparam/smartparam-demo).
+Along with SmartParam we published [demo application](https://github.com/smartparam/smartparam-demo).
 It is a set of demos that showcase main features of SmartParam in action. Each demonstration starts with
 creating and configuring ParamEngine instance and ends with showing result of action.
 
@@ -17,7 +17,7 @@ convention for clarity.
 First, fetch demo app sources
 
 ```
-    git clone https://bitbucket.org/smartparam/smartparam-demo.git
+    git clone https://github.com/smartparam/smartparam-demo.git
 ```
 
 Navigate to demo case, for example **SimpleParameterUsageDemo** and run it as a unit test in your IDE.

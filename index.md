@@ -90,7 +90,7 @@ SmartParam now and need our help, don't hesitate to contact us, we will be glad 
 
 ### Contact
 
-Use [SmartParam bitbucket profile](https://bitbucket.org/smartparam/smartparam/) to submit bugs, issues and feature
+Use [SmartParam Github profile](https://github.com/smartparam/) to submit bugs, issues and feature
 requests.
 
 You can also follow SmartParam on twitter [@smartparamorg](https://twitter.com/smartparamorg) to get latest news.
