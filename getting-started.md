@@ -7,25 +7,13 @@ title: SmartParam
 
 ## Dependencies
 
-SmartParam is still waiting for stable release. To use snapshots available at Sonatype OSS repository, add it to projects
-repository configuration:
-
-```xml
-    <repository>
-        <id>sonatype-snapshot</id>
-        <url>https://oss.sonatype.org/content/groups/public/</url>
-    </repository>
-```
-
-----
-
 SmartParam releases can be fetched from [Maven Central](maven.org) by adding following dependency to pom.xml:
 
 ```xml
     <dependency>
         <groupId>org.smartparam</groupId>
         <artifactId>smartparam-engine</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.1</version>
     </dependency>
 ```
 
@@ -36,7 +24,7 @@ Easiest way to integrate your application with SmartParam is to choose filesyste
     <dependency>
         <groupId>org.smartparam</groupId>
         <artifactId>smartparam-repository-fs</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.1</version>
     </dependency>
 ```
 
@@ -77,7 +65,7 @@ comes with [Spring integration module](/technical/spring.html):
     <dependency>
         <groupId>org.smartparam</groupId>
         <artifactId>smartparam-spring</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.1</version>
     </dependency>
 ```
 
@@ -99,6 +87,9 @@ which, among other extensions, contains Spring-compatible param engine factory. 
         </property>
     </bean>
 ```
+
+Still, since Spring XML is not fit to creating complex beans, consider implementing **FactoryBean** to inject SmartParam into
+Spring context.
 
 ## Defining parameter
 
@@ -126,9 +117,8 @@ date;customerType;discount
 
 Sample parameter is one-to-one SmartParam representation of parameter presented on [home page](/what-is-smartparam.html).
 
-First part of a SmartParam serialized parameter file is parameter **metadata** (header). It is written in JSON, each line
-preceded by comment char **\#**. Last line of metadata configuration should contain double comment char to mark the
-end of JSON input. Quick explanation of metadata fields:
+First part of a SmartParam serialized parameter file is parameter **metadata** (header), written in JSON.
+Quick explanation of metadata fields:
 
 * name - repository-wide unique identifier of parameter, used to access it from application
 * inputLevels - number of levels, that should be matched against queries
@@ -143,13 +133,13 @@ included only for readability concerns (it can't be omitted though, as parser st
 ### Getting parameter value
 
 ```java
-    private ParamEngine paramEngine;
+private ParamEngine paramEngine;
 
-    /* ... */
+/* ... */
 
-    public int discount(Date date, String customerType) {
-        return paramEngine.get("customerDiscount", date, customerType).getInteger();
-    }
+public int discount(Date date, String customerType) {
+    return paramEngine.get("customerDiscount", date, customerType).get();
+}
 ```
 
 ## What just happened?
@@ -164,4 +154,4 @@ parameter entries that match. As a result, part of a parameter matrix wrapped in
 ## More info
 
 SmartParam documentation covers only basic usage case, for now at least. We will be working hard on improving
-documentation. Meanwhile, you can find live example at [SmartParam tutorial app](/tutorial-app.html).
+documentation. Meanwhile, you can find live example at [SmartParam demo app](/demo-app.html).
