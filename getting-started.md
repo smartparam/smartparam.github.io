@@ -10,22 +10,22 @@ title: SmartParam
 SmartParam releases can be fetched from [Maven Central](maven.org) by adding following dependency to pom.xml:
 
 ```xml
-    <dependency>
-        <groupId>org.smartparam</groupId>
-        <artifactId>smartparam-engine</artifactId>
-        <version>0.9.1</version>
-    </dependency>
+<dependency>
+    <groupId>org.smartparam</groupId>
+    <artifactId>smartparam-engine</artifactId>
+    <version>{{site.data.version.current}}</version>
+</dependency>
 ```
 
 This will fetch only core engine module. In order to utilize SmartParam, you need to choose parameter repository.
 Easiest way to integrate your application with SmartParam is to choose filesystem repository:
 
 ```xml
-    <dependency>
-        <groupId>org.smartparam</groupId>
-        <artifactId>smartparam-repository-fs</artifactId>
-        <version>0.9.1</version>
-    </dependency>
+<dependency>
+    <groupId>org.smartparam</groupId>
+    <artifactId>smartparam-repository-fs</artifactId>
+    <version>{{site.data.version.current}}</version>
+</dependency>
 ```
 
 If you do not use Maven or prefer to include raw *.jar files, just download them from [Maven Central](maven.org).
@@ -45,15 +45,16 @@ be deployed with any app - J2SE, J2EE or any other JVM platform. Use `ParamEngin
 engine:
 
 ```java
-    /*...*/
-    import static org.smartparam.engine.config.pico.ParamEngineConfigBuilder.paramEngineConfig;
-    import static org.smartparam.engine.config.pico.PicoParamEngineFactory.paramEngine;
-    /*...*/
+/*...*/
+import static org.smartparam.engine.config.pico.ParamEngineConfigBuilder.paramEngineConfig;
+import static org.smartparam.engine.config.pico.PicoParamEngineFactory.paramEngine;
+/*...*/
 
-    ParamRepository classpathRepository = new ClasspathParamRepository("/param/", ".*csv$");
-    PicoParamEngineConfig config = paramEngineConfig().withAnnotationScanEnabled("your.base.package.with.smartparam.annotations")
-        .withParameterRepositories(classpathRepository).build();
-    ParamEngine paramEngine = paramEngine(config);
+ParamRepository classpathRepository = new ClasspathParamRepository("/param/", ".*csv$");
+PicoParamEngineConfig config = paramEngineConfig()
+    .withAnnotationScanEnabled()
+    .withParameterRepositories(classpathRepository).build();
+ParamEngine paramEngine = paramEngine(config);
 ```
 
 ### Spring
@@ -62,30 +63,30 @@ Nevermind independence, lots of people use Spring Framework and want libraries t
 comes with [Spring integration module](/technical/spring.html):
 
 ```xml
-    <dependency>
-        <groupId>org.smartparam</groupId>
-        <artifactId>smartparam-spring</artifactId>
-        <version>0.9.1</version>
-    </dependency>
+<dependency>
+    <groupId>org.smartparam</groupId>
+    <artifactId>smartparam-spring</artifactId>
+    <version>{{site.data.version.current}}</version>
+</dependency>
 ```
 
 which, among other extensions, contains Spring-compatible param engine factory. Sample XML configuration:
 
 ```xml
-    <bean id="paramEngine" class="org.smartparam.spring.SpringParamEngineFactory">
-        <property name="paramRepository">
-            <bean class="org.smartparam.repository.fs.ClasspathParamRepository">
-                <constructor-arg index="0" value="/param/"/>
-                <constructor-arg index="1" value=".*csv$"/>
-            </bean>
-        </property>
-        <property name="scanAnnotations" value="true"/>
-        <property name="packagesToScan">
-            <list>
-                <value>org.smartparam.spring</value>
-            </list>
-        </property>
-    </bean>
+<bean id="paramEngine" class="org.smartparam.spring.SpringParamEngineFactory">
+    <property name="paramRepository">
+        <bean class="org.smartparam.repository.fs.ClasspathParamRepository">
+            <constructor-arg index="0" value="/param/"/>
+            <constructor-arg index="1" value=".*csv$"/>
+        </bean>
+    </property>
+    <property name="scanAnnotations" value="true"/>
+    <property name="packagesToScan">
+        <list>
+            <value>org.smartparam.spring</value>
+        </list>
+    </property>
+</bean>
 ```
 
 Still, since Spring XML is not fit to creating complex beans, consider implementing **FactoryBean** to inject SmartParam into

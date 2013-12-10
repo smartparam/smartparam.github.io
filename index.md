@@ -22,31 +22,35 @@ SmartParam comes with rich set of filtering tools to control what value is retur
 query type.. all depends on usage scenario. SmartParam allows for including custom, project specific filters that
 operate in business domain.
 
+SmartParam also bundles plugins invoker, which can be used to create dynamic, pluggable policies or algorithm
+implementations. Plugins can be written in any language that can be run in JVM. Core distribution contains
+support for Java functions, but plugins could be written in Groovy, JavaScript or Clojure as well.
+
 ### So what is a parameter?
 
 In layman terms - combination of `if` statements that returns value (primitive or object). For example `if` chain
 written in pseudocode:
 
 ```
-    /*...*/
-    if ( date < 2013-02-01 ) {
-        if ( customer_type == 'BUSINESS' ) {
-            return 10;
-        }
-        else if( customer_type == 'STANDARD' ) {
-            return 5;
-        }
+/*...*/
+if ( date < 2013-02-01 ) {
+    if ( customer_type == 'BUSINESS' ) {
+        return 10;
     }
-    else if ( date >= 2013-02-01 && date < 2013-03-01 ) {
-        if ( customer_type == 'BUSINESS' ) {
-            return 25;
-        }
-        else if( customer_type == 'STANDARD' ) {
-            return 10;
-        }
+    else if( customer_type == 'STANDARD' ) {
+        return 5;
     }
-    // else
-    return 0;
+}
+else if ( date >= 2013-02-01 && date < 2013-03-01 ) {
+    if ( customer_type == 'BUSINESS' ) {
+        return 25;
+    }
+    else if( customer_type == 'STANDARD' ) {
+        return 10;
+    }
+}
+// else
+return 0;
 ```
 
 Is equivalent to parameter described as:
@@ -80,13 +84,9 @@ filtering (matching) function to each input column of parameter.
 ### I want to get started now!
 
 * [Getting started](/getting-started.html)
+* [Documentation](/doc/domain.html)
 * [Demos](/demo-app.html)
 
-### Ouch, why is there so little documentation?
-
-Our major concern so far was to release SmartParam into the wild. We know that documentation is scarce and might scare
-you off. We will be working hard on improving documentation in following weeks. However if you would like to start using
-SmartParam now and need our help, don't hesitate to contact us, we will be glad to help.
 
 ### Contact
 

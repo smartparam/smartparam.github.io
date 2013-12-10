@@ -1,4 +1,1 @@
-smartparam.github.io
-====================
-
-SmartParam page.
+# SmartParam Jekyll page.

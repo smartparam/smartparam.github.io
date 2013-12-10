@@ -1,15 +1,14 @@
+body {
+    padding-top: 70px;
+}
 
 header.hero > div {
-    margin-top: 100px;
+    margin-top: 30px;
     margin-bottom: 20px;
     height: 290px;
     background-repeat: no-repeat;
     background-image: url(../img/smartparam.png);
     background-position: 50% 0%;
-}
-
-header.small > div {
-    margin-top: 60px;
 }
 
 header {
@@ -32,8 +31,7 @@ div.well {
 }
 
 footer {
-    padding: 70px 0px;
-    margin-top: 70px;
+    padding: 30px 0px;
     margin-bottom: 20px;
     border-top: 1px solid #eee;
     text-align: right;
