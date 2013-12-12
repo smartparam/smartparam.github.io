@@ -47,9 +47,9 @@ registered under the same name/code, so it is possible to cherry-pick default im
 
 ### Customizing configuration
 
-ParamEngine is really flexible when it comes to customization. By tinkering with configuration builder it is even possible
-to provide custom ParamEngine implementation and get away with it. Configuration builder exposes methods for registering
-all domain entities by hand, although annotation scanning should be preferred.
+Configuration builder exposes methods for registering all domain entities and services in instance of ParamEngine. If
+options exposed by builder are not enough, it is possible to construct own ParamEngine dependency tree and replace any
+part of it.
 
 ### Accessing runtime configuration
 

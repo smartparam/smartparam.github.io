@@ -10,11 +10,11 @@ Core building blocks of ParamEngine are:
 * parameter
 * level
 * parameter entry
+* function (plugin)
 
 **Parameter** domain object can be divided into two logical parts: **metadata** and **content**. Content is a set of entries.
 Metadata is description of parameter, defines its behavior and how parameter content should be accessed when queried.
 Metadata consists of parameter header and level definitions.
-
 
 ## Parameter metadata
 
@@ -23,6 +23,11 @@ Metadata consists of parameter header and level definitions.
 Name must be unique repository-wide. It is also the only identifier of parameter. If parameters from different repositories
 share the same name, repository registration order matters (first in, first out). This can be used to create
 server/environment-specific parameters with sensible defaults.
+
+#### Input levels
+
+How many levels are used to evaluate query. Equivalent to query vector length. Rest of the levels are treated as parameter
+output. For more on levels see *Level* section below.
 
 #### Cacheable
 
@@ -46,5 +51,57 @@ no match for query vector is found `ParameterValueNotFoundException` is thrown.
 If level stores arrays of values (see level description below), this property defines separator that is used to separate
 distinct values. By default **,** (comma) is used. This only affects array levels!
 
+## Level
 
+Parameter level describes single dimension/column of parameter. Parameter can have unlimited number of levels. Levels are
+logically separated into two groups: input and output. Input levels are matched against query vector to determine parameter
+output value. Output levels are returned after finding matching entry. Number of input levels is defined in parameter metadata.
 
+#### Name
+
+Name of level makes sense only for output levels, as it allows to get value of specific level by its name instead of index.
+However it might be a good practice to name input levels as well and treat it as documentation.
+
+#### Array
+
+Flag which specifies if this level holds single value or array of values, i.e. `A,B,C,D` can be treated as a String
+`A,B,C,D` or `String[] { "A", "B", "C", "D" }`. Distinct values separator is declared in parameter metadata.
+
+#### Type
+
+Name of type of values held in level. Type defines how value is decoded and encoded from/to string. Type has to be
+registered in current instance of ParamEngine. By default column has `string` type. For more on types read [this](/doc/type.html).
+
+#### Matcher
+
+Name of matcher that should be used to match query value with pattern held in level. Matchers might have different effects depending
+on level type. Default matcher compares two raw string values. For more on matchers read [this](/doc/matcher.html).
+
+#### Level creator
+
+Level creator is name of function that has to be run in order to extract value from parameter evaluation context. Extracted value will
+matched with pattern held in level. Dynamic nature of level creators enables user to create flexible and easy to use 
+parameters. For more on level creators and parameter evaluation context read [this](/doc/context.html).
+
+## Parameter entry
+
+Parameter entry is a single row of parameter matrix. Its length is equal to number of levels. It holds only raw data,
+has no other properties.
+
+## Function
+
+SmartParam comes with builtin dynamic functions invokers. This is a perfect tool for defining pluggable policies
+or algorithms. Function name can be parameter output, which allows i.e. to version them or to use different policies 
+depending on customer type. Functions can be written in any JVM language, although by default SmartParam only supports
+calling methods of Java classes and Spring beans (if Spring integration module is loaded).
+
+For more on functions and possible use cases read [this](/doc/function.html).
+
+#### Name
+
+Repository-wide unique function identifier. Just as with parameters, there can be multiple function repositories
+registered and functions can be overriden.
+
+#### Type
+
+Function type is used to determine which function invoker should be used to run it.
