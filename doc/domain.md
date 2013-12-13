@@ -90,18 +90,5 @@ has no other properties.
 
 ## Function
 
-SmartParam comes with builtin dynamic functions invokers. This is a perfect tool for defining pluggable policies
-or algorithms. Function name can be parameter output, which allows i.e. to version them or to use different policies 
-depending on customer type. Functions can be written in any JVM language, although by default SmartParam only supports
-calling methods of Java classes and Spring beans (if Spring integration module is loaded).
-
-For more on functions and possible use cases read [this](/doc/function.html).
-
-#### Name
-
-Repository-wide unique function identifier. Just as with parameters, there can be multiple function repositories
-registered and functions can be overriden.
-
-#### Type
-
-Function type is used to determine which function invoker should be used to run it.
+Functions play really important role in SmartParam and exist in a parallel domain. Thats why there is a separate entry
+about them [here](/doc/function.md).
