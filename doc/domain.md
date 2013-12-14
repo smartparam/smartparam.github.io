@@ -91,4 +91,4 @@ has no other properties.
 ## Function
 
 Functions play really important role in SmartParam and exist in a parallel domain. Thats why there is a separate entry
-about them [here](/doc/function.md).
+about them [here](/doc/function.html).
