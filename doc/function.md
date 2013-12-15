@@ -60,7 +60,7 @@ public class DiscountingPolicies() {
     }
     
     @JavaPlugin("policy.otherPromotion")
-    public long other(long discountA, long discountB) {
+    public long otherPromotion(long discountA, long discountB) {
         // take higher
         return discountA > discountB ? discountA : discountAB;
     }
@@ -83,7 +83,8 @@ And use it:
 
 ```java
 long calculateFinalDiscount(Date currentDate, Customer customer, long discountA, long discountB) {
-    return (long) paramEngine.callEvaluatedFunction("discountPolicy", new LevelValues(currentDate, customer.type()), discountA, discountB);
+    return (long) paramEngine.callEvaluatedFunction("discountPolicy",
+            new LevelValues(currentDate, customer.type()), discountA, discountB);
 }
 
 ```
@@ -93,4 +94,4 @@ Parameter should return single string value, being function name. It is immediat
 function invocation value is returned.
 
 This example purposely avoids using parameter evaluation context with level creators. To see how to implement it in 
-more robust way read about [level creators](/dev/level-creator.html) and [evaluation context](/doc/context.html).
+more robust way read about [level creators](/dev/level-creator.html) and [evaluation context](/doc/param-context.html).
