@@ -28,6 +28,7 @@ Example of direct query approach:
         {name: "userAge", type: "integer"}
         {name: "factor", type: "integer"}
     ]
+}
 userLogin;userAge;factor
 adam;23;125
 ```
@@ -36,7 +37,7 @@ adam;23;125
 public int evaluateMagicFactor(User user) {
     String login = user.login();
     int age = user.age();
-    
+
     return paramEngine.get("user.magicFactor", login, age).getInteger();
 }
 ```
@@ -59,6 +60,7 @@ Example of level creator based approach:
         {name: "userAge", type: "integer", levelCrator: "user.age"}
         {name: "factor", type: "integer"}
     ]
+}
 userLogin;userAge;factor
 adam;23;125
 ```

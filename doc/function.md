@@ -21,13 +21,13 @@ To create custom implementation of function you need to implement:
 
 #### Function
 
-`org.smartparam.engine.code.function.Function` is an interface representing function. It implementations can define as 
+`org.smartparam.engine.code.function.Function` is an interface representing function. It implementations can define as
 many custom properties as necessary. Function object is loaded from repository and passed on to invoker. Function interface
 requires function to have a name (which is unique repository-wide) and type (which determines repository and invoker).
 
 #### Function repository
 
-Function repository (`org.smartparam.engine.core.function.FunctionRepository`) is responsible for function discovery 
+Function repository (`org.smartparam.engine.core.function.FunctionRepository`) is responsible for function discovery
 and loading. Function repository does not have a name, instead it is registered with name of functions type that it stores.
 To automatically register function repository, annotate it with `org.smartparam.engine.annotated.annotations.ParamFunctionRepository`.
 
@@ -41,7 +41,7 @@ by type of functions it is able to invoke. To automatically register function in
 
 ## Usecase
 
-As an example let's assume we have two categories of customers. Premium customers pay a lot for their status and so 
+As an example let's assume we have two categories of customers. Premium customers pay a lot for their status and so
 have other discounting algorithm. Second category is all the rest.  Discounting policies have already been
 coded (ignore `@JavaPlugin` for now):
 
@@ -52,13 +52,13 @@ public class DiscountingPolicies() {
     public long premium(long discountA, long discountB) {
         return discountA + discountB;
     }
-    
+
     @JavaPlugin("policy.other")
     public long other(long discountA, long discountB) {
         // take lower
         return discountA > discountB ? discountB : discountA;
     }
-    
+
     @JavaPlugin("policy.otherPromotion")
     public long otherPromotion(long discountA, long discountB) {
         // take higher
@@ -67,9 +67,9 @@ public class DiscountingPolicies() {
 }
 ```
 
-Business also wants to introduce special offer periods, when discounts are calculated differently. 
+Business also wants to introduce special offer periods, when discounts are calculated differently.
 This would be quite complicated if not for SmartParam. Notice the `@JavaPlugin` annotation - this registers annotated method
-as Java function under given name. If we already registered functions, let's construct parameter `discountPolicy` that 
+as Java function under given name. If we already registered functions, let's construct parameter `discountPolicy` that
 will encapsulate this business logic.
 
 | date                  | type    | policy                |
@@ -93,5 +93,5 @@ What just happened? ParamEngine function `callEvaluatedFunction` first evaluates
 Parameter should return single string value, being function name. It is immediately called with arguments provided and
 function invocation value is returned.
 
-This example purposely avoids using parameter evaluation context with level creators. To see how to implement it in 
-more robust way read about [level creators](/dev/level-creator.html) and [evaluation context](/doc/param-context.html).
+This example purposely avoids using parameter evaluation context with level creators. To see how to implement it in
+more robust way read about [level creators](/doc/level-creator.html) and [evaluation context](/doc/param-context.html).

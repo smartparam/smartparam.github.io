@@ -19,8 +19,8 @@ level creator convention:
 ```
 
 Level creator does not have to be Java function. It can be written in any language supported by ParamEngine instance.
-It also does not have to be a simple find&return function. Level creator might apply some preprocessing or 
-perform a database lookup. However be careful with *fat* level creators as complexity of these functions directly affects 
+It also does not have to be a simple find&return function. Level creator might apply some preprocessing or
+perform a database lookup. However be careful with *fat* level creators as complexity of these functions directly affects
 parameter evaluation time.
 
 ## Usage
@@ -47,11 +47,7 @@ public class LevelCreators {
 
     @JavaPlugin("user.login")
     public String userLogin(DefaultContext context) {
-        User user = context.get(User.class);
-        if(user != null) {
-            return user.login();
-        }
-        return user;
+        User user = context.get(User.class).login();
     }
 }
 ```

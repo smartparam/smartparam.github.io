@@ -7,7 +7,7 @@ title: SmartParam
 
 ## Dependencies
 
-SmartParam releases can be fetched from [Maven Central](maven.org) by adding following dependency to pom.xml:
+SmartParam releases can be fetched from [Maven Central](http://maven.org) by adding following dependency to pom.xml:
 
 ```xml
 <dependency>
@@ -18,7 +18,7 @@ SmartParam releases can be fetched from [Maven Central](maven.org) by adding fol
 ```
 
 This will fetch only core engine module. In order to utilize SmartParam, you need to choose parameter repository.
-Easiest way to integrate your application with SmartParam is to choose filesystem repository:
+Easiest way to integrate your application with SmartParam is to choose filesystem repository (but we have a [JDBC](/doc/repository-jdbc.html) one too):
 
 ```xml
 <dependency>
@@ -28,7 +28,7 @@ Easiest way to integrate your application with SmartParam is to choose filesyste
 </dependency>
 ```
 
-If you do not use Maven or prefer to include raw *.jar files, just download them from [Maven Central](maven.org).
+If you do not use Maven or prefer to include raw *.jar files, just download them from [Maven Central](http://maven.org).
 
 ## Configuring SmartParam
 
@@ -50,7 +50,7 @@ import static org.smartparam.engine.config.pico.ParamEngineConfigBuilder.paramEn
 import static org.smartparam.engine.config.pico.PicoParamEngineFactory.paramEngine;
 /*...*/
 
-ParamRepository classpathRepository = new ClasspathParamRepository("/param/", ".*csv$");
+ParamRepository classpathRepository = new ClasspathParamRepository("/param/", ".*\\.param$");
 PicoParamEngineConfig config = paramEngineConfig()
     .withAnnotationScanEnabled()
     .withParameterRepositories(classpathRepository).build();
@@ -60,7 +60,7 @@ ParamEngine paramEngine = paramEngine(config);
 ### Spring
 
 Nevermind independence, lots of people use Spring Framework and want libraries to fit in nicely. Thats why SmartParam
-comes with [Spring integration module](/technical/spring.html):
+comes with Spring integration module:
 
 ```xml
 <dependency>
@@ -77,7 +77,7 @@ which, among other extensions, contains Spring-compatible param engine factory. 
     <property name="paramRepository">
         <bean class="org.smartparam.repository.fs.ClasspathParamRepository">
             <constructor-arg index="0" value="/param/"/>
-            <constructor-arg index="1" value=".*csv$"/>
+            <constructor-arg index="1" value=".*\\.param$"/>
         </bean>
     </property>
     <property name="scanAnnotations" value="true"/>
@@ -95,8 +95,8 @@ Spring context.
 ## Defining parameter
 
 Create **param** directory in classpath root (in Maven projects preferably in *other sources*). This will be the root
-directory for classpath-based repository. To define new parameter, simply create new **.csv** file. Sample content of
-*customerDiscount.csv*:
+directory for classpath-based repository. To define new parameter, simply create new **.param** file. Sample content of
+*customerDiscount.param*:
 
 ```
 {
@@ -116,7 +116,7 @@ date;customerType;discount
  *;*;0
 ```
 
-Sample parameter is one-to-one SmartParam representation of parameter presented on [home page](/what-is-smartparam.html).
+Sample parameter is one-to-one SmartParam representation of parameter presented on [home page](/).
 
 First part of a SmartParam serialized parameter file is parameter **metadata** (header), written in JSON.
 Quick explanation of metadata fields:
@@ -146,7 +146,7 @@ public int discount(Date date, String customerType) {
 ## What just happened?
 
 During param engine creation classpath repository scanned all resources in given directory matching files against
-provided pattern (".\*csv$") and searching for parameters. Only the name of parameter specified in metadata
+provided pattern and searching for parameters. Only the name of parameter specified in metadata
 matters when calling `paramEngine.get(...)`. Parameter engine takes query vector `[date, customerType]` and finds any
 parameter entries that match. As a result, part of a parameter matrix wrapped in **ParamValue** object is returned.
 **ParamValue** contains few convenience methods, one of them being **get()**, which returns single value
@@ -154,5 +154,5 @@ parameter entries that match. As a result, part of a parameter matrix wrapped in
 
 ## More info
 
-SmartParam documentation covers only basic usage case, for now at least. We will be working hard on improving
-documentation. Meanwhile, you can find live example at [SmartParam demo app](/demo-app.html).
+This is the most basic way of getting parameter value out, but there is a lot more. Check out documentation
+to find out how to use [ParamContext](/doc/param-context.html) and [level creators](/doc/level-creator.html).
