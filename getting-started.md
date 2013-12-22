@@ -130,7 +130,8 @@ Quick explanation of metadata fields:
 Second part, **parameter entries**, is stored in CSV format which uses semicolon (**;**) as delimiter. CSV format was chosen because
 of very small overhead (parameters might contain millions of entries) and because it is easily understandable by non-programmers.
 Each CSV column is mapped to respective level defined in metadata. CSV header has no functional impact and is
-included only for readability concerns (it can't be omitted though, as parser strips off first row).
+included only for readability concerns (it can't be omitted though, as parser strips off first row). You can read more
+about serialization [here](/doc/serialization.html).
 
 ### Getting parameter value
 
@@ -156,4 +157,5 @@ parameter entries that match. As a result, part of a parameter matrix wrapped in
 ## More info
 
 This is the most basic way of getting parameter value out, but there is a lot more. Check out documentation
-to find out how to use [ParamContext](/doc/param-context.html) and [level creators](/doc/level-creator.html).
+to learn more about [domain](/doc/domain.html) and to find out how to use [ParamContext](/doc/param-context.html)
+and [level creators](/doc/level-creator.html).
