@@ -10,7 +10,7 @@ provided objects are translated encoded to string using type specification from 
 string values are passed to matcher (if defined) - encoded query value and string pattern from parameter entry. Third
 argument is type of these values. This allows on writing matchers that compare decoded values or operate on specific type.
 
-When match has been found and output submatrix is returned, types are used to encoded submatrix values to Java object 
+When match has been found and output submatrix is returned, types are used to encoded submatrix values to Java object
 instances so they can be returned using one of many output submatrix helper methods.
 
 ## Type and holder
@@ -22,9 +22,38 @@ transparently assign different meanings/representations of held object class (ex
 
 ## Custom implementation
 
-Extend `org.smartparam.engine.core.type.AbstractHolder` class to create raw value holder. Implement 
-`org.smartparam.core.type.Type` interface and annotate the implementation using `org.smartparam.engine.annotated.annotations.Type`
-annotation to enable automatic discovery or register type on engine creation.
+Depending on type, there are 3 different ways to create custom type. When total
+control is needed, you might need to implement it from scratch. For simple types,
+it's enough to implement decoding/encoding features.
+
+All custom types should be annotated with `org.smartparam.engine.annotated.annotations.Type`
+to enable automatic discovery.
+
+### Implementing from scratch
+
+Implement `org.smartparam.engine.core.type.ValueHolder` class to create raw value holder.
+Holder is responsible for containing and performing operations on raw value,
+encapsulating any information about value state (is it null? is it comparable?).
+It also has accessor methods that might return different representations of value,
+for example Date can be represented as long by returning number of milliseconds.
+You can extend `org.smartparam.engine.core.type.AbstractValueHolder` to get
+default implementation for most of methods.
+
+Implement `org.smartparam.core.type.Type`, interface responsible for encoding
+and decoding string representation from/to concrete ValueHolder.
+
+### Implementing with AbstractType
+
+Type has some methods that are very important performance-wise, but you might
+not need to customize them. If you need a solid, default implementation extend
+`org.smartparam.engine.core.type.AbstractType`. Using this method is preferred if
+you want to keep control over ValueHolder.
+
+### Simple implementation
+
+Most of the times you will need Type to contain a simple value object used widely
+across the application. If so, extend `org.smartparam.engine.core.type.SimpleType`
+which already provides default ValueHolder implementation.
 
 ## Bundled types
 

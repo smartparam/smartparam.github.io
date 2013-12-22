@@ -69,7 +69,7 @@ public class DiscountingPolicies() {
 
 Business also wants to introduce special offer periods, when discounts are calculated differently.
 This would be quite complicated if not for SmartParam. Notice the `@JavaPlugin` annotation - this registers annotated method
-as Java function under given name. If we already registered functions, let's construct parameter `discountPolicy` that
+as [Java function](/doc/function-java.html) under given name. If we already registered functions, let's construct parameter `discountPolicy` that
 will encapsulate this business logic.
 
 | date                  | type    | policy                |

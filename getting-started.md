@@ -18,7 +18,8 @@ SmartParam releases can be fetched from [Maven Central](http://maven.org) by add
 ```
 
 This will fetch only core engine module. In order to utilize SmartParam, you need to choose parameter repository.
-Easiest way to integrate your application with SmartParam is to choose filesystem repository (but we have a [JDBC](/doc/repository-jdbc.html) one too):
+Easiest way to integrate your application with SmartParam is to choose [classpath repository](/doc/repository-classpath.html)
+(but we have a [JDBC](/doc/repository-jdbc.html) repo too):
 
 ```xml
 <dependency>
@@ -35,7 +36,7 @@ If you do not use Maven or prefer to include raw *.jar files, just download them
 Lets head on to creating instance of parameter engine - the heart of SmartParam. Examples below assume creation of
 param engine that uses classpath repository and has annotation scanning enabled.
 
-**Attention!** Classpath repository needs [reflections.org](https://code.google.com/p/reflections/) jar in
+**Attention!** Classpath repository needs [reflections](https://code.google.com/p/reflections/) jar in
 classpath to work.
 
 ### Raw
@@ -60,7 +61,7 @@ ParamEngine paramEngine = paramEngine(config);
 ### Spring
 
 Nevermind independence, lots of people use Spring Framework and want libraries to fit in nicely. Thats why SmartParam
-comes with Spring integration module:
+comes with [Spring integration module](/doc/function-spring.html):
 
 ```xml
 <dependency>
