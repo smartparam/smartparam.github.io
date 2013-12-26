@@ -24,6 +24,10 @@ elastic discounting system? For use of this tutorial, following business require
 
 ## Base implementation
 
+Tutorial application is based on Spring configured via Java config. It is used only for dependency injection, so
+no working knowledge is required to go through the tutorial (as long as you are familiar with conception of
+dependency injection and inversion of control).
+
 Central place of our application is **User**:
 
 ```java
@@ -39,7 +43,7 @@ public class User {
 }
 ```
 
-**UserAccountType** is crucial for parametrisation (different users have different discounts):
+**UserAccountType** is crucial for parametrization (different users have different discounts):
 
 ```java
 public enum UserAccountType {

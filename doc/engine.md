@@ -23,7 +23,6 @@ Quickest way to get ParamEngine up and running assuming you already have paramet
 
 ```java
 ParamEngineConfig engineConfig = ParamEngineConfigBuilder.paramEngineConfig()
-    .withAnnotationScanEnabled()
     .withParameterRepositories(/* insert repositories */).build();
 
 ParamEngine engine = ParamEngineFactory.paramEngine(engineConfig);
@@ -34,12 +33,14 @@ ParamEngine must have at least one parameter repository, there is no default rep
 ### Annotation scanning
 
 SmartParam uses annotation scanning to register default and user defined entities. Annotation scanning is
-enabled by using `.withAnnotationScanEnabled()` method on configuration builder. This method takes varargs `String...`
+enabled by default, but can be disabled using `.withAnnotationScanDisabled()` method on configuration builder.
+By default only **org.smartparam.engine** package (with descendants) is scanned to load all default components
+(matchers, types...). To add more packages to scanned set call `.withPackagesToScan(String...)`. This method takes varargs `String...`
 argument that should be used to specify custom package prefixes that should be scanned on ParamEngine creation in
 search of SmartParam annotations, i.e.:
 
 ```java
-.withAnnotationScanEnabled("com.mysoftware.param", "org.smartparamextensions")
+.withPackagesToScan("com.mysoftware.param", "org.smartparam.extensions")
 ```
 
 First user provided packages are scanned, then default package `org.smartparam.engine`. Custom entities override defaults
