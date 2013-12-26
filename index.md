@@ -83,6 +83,7 @@ filtering (matching) function to each input column of parameter.
 
 ### I want to get started now!
 
+* [Getting started with first parameter (step 1 of tutorial)](/tutorial/step-1-first-parameter.html)
 * [Tutorial](/tutorial/tutorial.html)
 * [Documentation](/doc/domain.html)
 
