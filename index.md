@@ -83,9 +83,8 @@ filtering (matching) function to each input column of parameter.
 
 ### I want to get started now!
 
-* [Getting started](/getting-started.html)
+* [Tutorial](/tutorial/tutorial.html)
 * [Documentation](/doc/domain.html)
-* [Demos](/demo-app.html)
 
 
 ### Contact
@@ -94,6 +93,7 @@ Use [SmartParam Github profile](https://github.com/smartparam/) to submit bugs, 
 requests.
 
 You can also follow SmartParam on twitter [@smartparamorg](https://twitter.com/smartparamorg) to get latest news.
+Or simply email us: **smartparamorg at gmail dot com**.
 
 ### Authors
 
