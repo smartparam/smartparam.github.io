@@ -49,6 +49,8 @@ More sophisticated and preferred approach is to use [level creators](/doc/level-
 based on content of bag-like context (`DefaultContext` is a default implementation of this type of context). User can
 put domain objects into context and it is be level creators role to extract lower level properties out of it.
 
+**Note: context objects are not reusable, they have to be constructed per parameter evaluation (we will change this in future)**
+
 Example of level creator based approach:
 
 ```xml

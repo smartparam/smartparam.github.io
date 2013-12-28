@@ -173,3 +173,7 @@ This is the most basic method of parameter value evaluation. You have to explici
 value. It might be useful, but is also very fragile. Imagine change of requirements, you would have to find
 all usages of `discount.loyalty` parameter and change the invocation. In next tutorial step I will show how to use
 SmartParam features to avoid this.
+
+## Code samples
+
+All code can be found in branch `step-1-first-parameter` of [tutorial project](https://github.com/smartparam/smartparam-tutorial).
