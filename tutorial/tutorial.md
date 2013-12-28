@@ -11,6 +11,7 @@ Currently available tutorial steps:
 
 1. [Introduction](/tutorial/step-0-introduction.html)
 1. [First parameter](/tutorial/step-1-first-parameter.html)
+1. [First function](/tutorial/step-2-first-function.html)
 
 ## Code samples
 

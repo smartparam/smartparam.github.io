@@ -174,6 +174,14 @@ value. It might be useful, but is also very fragile. Imagine change of requireme
 all usages of `discount.loyalty` parameter and change the invocation. In next tutorial step I will show how to use
 SmartParam features to avoid this.
 
+## Second parameter
+
+Second parameter, the targeted discount depends on current date and user login. Since the implementation
+is more or less the same as of first parameter, treat it as homework. You might want to use `DateProvider`
+to get current date.
+
+[Step 2](/tutorial/step-2-first-function.html) source code has the implementation in place.
+
 ## Code samples
 
 All code can be found in branch `step-1-first-parameter` of [tutorial project](https://github.com/smartparam/smartparam-tutorial).
