@@ -91,10 +91,7 @@ filtering (matching) function to each input column of parameter.
 ### Contact
 
 Use [SmartParam Github profile](https://github.com/smartparam/) to submit bugs, issues and feature
-requests.
-
-You can also follow SmartParam on twitter [@smartparamorg](https://twitter.com/smartparamorg) to get latest news.
-Or simply email us: **smartparamorg at gmail dot com**.
+requests, or simply email us: **smartparamorg at gmail dot com**.
 
 ### Authors
 
